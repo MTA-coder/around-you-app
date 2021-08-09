@@ -18,6 +18,7 @@ class CreateFollowersTable extends Migration
             $table->foreignId('user_id')->constrained('users', 'id');
             $table->integer('num_follower');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

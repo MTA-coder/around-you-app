@@ -18,7 +18,8 @@ class RegisterUser extends FormRequest
             'phone' => ['nullable', 'string'],
             'image' => ['nullable', 'string'],
             'gender' => ['required', 'string'],
-            'city' => ['nullable', 'string']
+            'city' => ['nullable', 'string'],
+            'is_Admin' => ['nullable', 'boolean'],
         ];
     }
 }

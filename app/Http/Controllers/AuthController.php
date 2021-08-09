@@ -14,10 +14,6 @@ class AuthController extends Controller
 
     private $user;
 
-    /**
-     * AuthController constructor.
-     * @param User $user
-     */
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -32,7 +28,7 @@ class AuthController extends Controller
 
         if ($created == null)
             return response()->json(['status' => 'ERROR', 'msg' => 'Operation Fail'], 510);
-        return response()->json(['status' => 'OK', 'data' => $data], 230);
+        return response()->json(['status' => 'OK', 'data' => $created], 220);
 
     }
 
@@ -41,6 +37,7 @@ class AuthController extends Controller
         $data = $request->validated();
         $user = null;
         if (Auth::attempt($data)) {
+
             $user = Auth::user();
             $user->token = $user->createToken('around-you-app')->accessToken;
         }
@@ -48,5 +45,12 @@ class AuthController extends Controller
 
         return response()->json(['status' => 'OK', 'data' => $user], 220);
     }
+
+    public function logOut(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json(['status' => 'OK', 'data' => 'Logout Success'], 200);
+    }
+
 
 }

@@ -16,16 +16,15 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users', 'id');
-            $table->foreignId('subCategory_id')->constrained('sub_categories', 'id');
-            $table->foreignId('brand_id')->constrained('brands', 'id');
+            $table->foreignId('subCategory_id')->nullable()->constrained('sub_categories', 'id');
             $table->string('name');
             $table->double('price')->nullable();;
             $table->boolean('isNew');
-            $table->integer('views')->default(0);
             $table->text('description');
-            $table->decimal('Latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->text('address');
+            $table->string('city');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

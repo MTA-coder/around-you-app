@@ -18,6 +18,7 @@ class CreateImagesTable extends Migration
             $table->foreignId('product_id')->constrained('products', 'id');
             $table->string('image') ;
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

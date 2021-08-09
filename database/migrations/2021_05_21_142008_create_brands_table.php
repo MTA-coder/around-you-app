@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->string('name');
             $table->foreignId('subCategory_id')->constrained('sub_categories', 'id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
